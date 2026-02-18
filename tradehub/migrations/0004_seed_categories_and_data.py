@@ -198,7 +198,7 @@ def reverse_seed(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('tradehub', '0002_alter_asset_amount'),
+        ('tradehub', '0003_alter_asset_options_alter_category_options_and_more'),
     ]
 
     operations = [
