@@ -10,7 +10,6 @@ local_settings.py
 db.sqlite3
 db.sqlite3-journal
 media
-.env
 PUSH_TO_GITHUB.md
 seed_production_data.py
 GIT_QUICK_COMMANDS.
@@ -141,7 +140,6 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
 .venv
 env/
 venv/
@@ -306,7 +304,6 @@ poetry.toml
 pyrightconfig.json
 
 ### VisualStudioCode ###
-.vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -328,3 +325,5 @@ pyrightconfig.json
 
 */migrations/*
 staticfiles/
+config.bat
+node_modules
