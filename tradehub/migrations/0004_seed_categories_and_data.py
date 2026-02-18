@@ -1,4 +1,5 @@
 from django.db import migrations
+from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from decimal import Decimal
 import datetime
@@ -40,11 +41,9 @@ def seed_data(apps, schema_editor):
             'email': 'demo@example.com',
             'first_name': 'Demo',
             'last_name': 'User',
+            'password': make_password('demo123456'),  # Hash password here
         }
     )
-    if created:
-        demo_user.set_password('demo123456')
-        demo_user.save()
 
     # Seed assets only if none exist
     if Asset.objects.filter(user=demo_user).exists():
