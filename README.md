@@ -1,53 +1,88 @@
-# Tradehub (Trade App) (Crypto - Stocks Trade Logger with Average Cost Calculator)
-![Cover image](./assets/images/django-tradehub-cover.webp)
+# TradeHub - Investment Portfolio Management Application
 
-## Project Description
-A trading app designed for users who want to track the average costs of their assets, such as cryptocurrencies and stocks, through a dashboard with graphical support, and keep a log of their transaction history.
+A comprehensive Django REST Framework application for tracking and managing personal investment portfolios across multiple asset categories including cryptocurrency, stocks, bonds, and real estate.
 
-## Features
-- **PostgreSQL Database**: PostgreSQL is used throughout the project due to extensive operations on decimal values.
-- **Asset Category Variety**: Initially, the project includes two basic asset categories: Crypto and Stocks. However, the structure of the project allows for an increase in the number of asset categories as needed.
-- **Various Types and Numbers of Assets**: Users can create as many new assets as they want in the static categories provided (crypto, stocks) and keep transaction logs within these assets.
-- **Asset Category Page/Dashboard**: The Asset Category Dashboard lists all assets created by the user in the selected category (e.g., under the Crypto category: Solana, IOTA, etc.).
-- **Asset Detail Pages**: The asset detail pages display all transactions related to the user-created asset within a dashboard. Additionally, they show the total number of assets owned, total cost, and average cost based on the total amount held.
-- **Asset Detail Dashboard**: Dashboards are created on the asset detail pages based on the user's transaction logs, showing all transactions and average costs.
-- **Automatic Average Cost Calculation**: When entering a new asset transaction on an asset detail page, the average cost is calculated based on the total amount and cost for both buy and sell transactions. Users only need to enter the total asset amount and cost for the transaction they are performing.
-- **Average Cost Graph**: An average cost graph is created on the asset detail page based on all purchases, showing the costs of transactions visually. This allows users to track whether their costs are increasing or decreasing.
-- **Buy & Sell Transactions**: Users can log both buy and sell transactions in the system.
-- **Privacy**: Only logged-in users can access their asset transaction activities and asset categories.
-- **Rest API**: The project has a REST API that supports all listing, creation, deletion operations. All operations can be performed by following the documentation below. In REST API, token authentication is used as authentication method.
+## 📋 Features
 
-## API Token Creation
-- Every time a new user registers, an automatic token is generated for that user with the help of signals. No extra action is required.
+- **Multi-Asset Portfolio Tracking**: Track cryptocurrencies, stocks, bonds, and real estate investments
+- **Transaction Logging**: Complete buy/sell transaction history for each asset
+- **Real-time Portfolio Value**: Current USD valuation and cost basis tracking
+- **User Authentication**: Secure user account management and data privacy
+- **REST API**: Full-featured REST API for programmatic access with token authentication
+- **Admin Dashboard**: Django admin interface for data management
+- **Responsive Web Interface**: User-friendly portfolio management interface
+- **Automatic Average Cost Calculation**: Calculates cost basis automatically from transaction logs
+- **Transaction Charts**: Visual representation of trading history and costs
 
-### How to GET API Token
-`/api/api-token-auth/`
+## 🚀 Quick Start
 
-You can make a "GET" request to this URL to get the user token to use the API.
+### Prerequisites
 
-When sending an HTTP GET request, username and password must be sent in the request body.
+- Python 3.13+
+- pip (Python package manager)
+- Git
 
-### How to Generate New API Token
-`/api/api-token-auth/generate/`
+### Installation
 
-You need to make a "GET" request to this URL with your current API Token to generate new API Token. After a succesfull request your access token will be renewed completely. Make a note of the new token or access your newly created token via the API Token Page page on the site.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/django-rest-finance-app.git
+   cd django-rest-finance-app
+   ```
 
-### On Site GET API Token and Generate New API Token
+2. **Create a virtual environment**
+   ```bash
+   python3.13 -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
 
-`/account/api-token/`
+3. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-Visit this page (while you have logged in session) to get API Token on site. You can access this page by using navbar.
+4. **Create environment configuration**
+   ```bash
+   cp .env.example .env
+   ```
 
-## API Endpoints Documentation
+5. **Run migrations**
+   ```bash
+   python manage.py migrate
+   ```
 
-### GET URLs
-- **List All Categories**:  
-  `/api/categories/`  
-  Lists all active categories on the site where assets can be created.
+6. **Create a superuser account**
+   ```bash
+   python manage.py createsuperuser
+   ```
 
-- **List All Assets in a Category**:  
-  `/api/<category_slug>/assets/`  
-  Lists all assets created under the specified category.  
+7. **Load sample data (optional)**
+   ```bash
+   python seed_production_data.py
+   ```
+
+8. **Start the development server**
+   ```bash
+   python manage.py runserver 8001
+   ```
+
+## 🌐 Quick Access
+
+### Web Interface
+- **Homepage**: http://127.0.0.1:8001/
+- **Login**: http://127.0.0.1:8001/account/login/
+- **Admin**: http://127.0.0.1:8001/admin/
+
+### Portfolio Pages (Authenticated Users)
+- **Crypto**: http://127.0.0.1:8001/assets/crypto/
+- **Stocks**: http://127.0.0.1:8001/assets/stocks/
+- **Bonds**: http://127.0.0.1:8001/assets/bonds/
+- **Real Estate**: http://127.0.0.1:8001/assets/real-estate/
+
+### REST API
+- **Categories**: `/api/categories/`
+- **Assets**: `/api/assets/`
+- **Auth Token**: `/api/api-token-auth/` (POST with username/password)  
   Example URL: `/api/crypto/assets/`
 
 - **Asset Details and Transaction Logs**:  

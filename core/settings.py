@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,12 +25,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-9-c(y)z^8040c%&h%agep0)*n+#vlv^*3^pidg4)fg6ix0hq#n'
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-9-c(y)z^8040c%&h%agep0)*n+#vlv^*3^pidg4)fg6ix0hq#n')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 
 # Application definition
@@ -83,12 +87,8 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'tradehub',  # Oluşturduğunuz veritabanı adı
-        'USER': 'oskay',    # Veritabanı kullanıcı adınız
-        'PASSWORD': 'q1w2e3r4t5',  # Veritabanı şifreniz
-        'HOST': 'localhost',   # veya uzak bir sunucu adresi
-        'PORT': '5432',        # PostgreSQL'in varsayılan portu
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
